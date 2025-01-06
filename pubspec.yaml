@@ -29,3 +29,8 @@ flutter:
   assets:
     - assets/
     - assets/png/
+
+  fonts:
+    - family: PingFang
+      fonts:
+        - asset: assets/font/PingFang-SC.ttf

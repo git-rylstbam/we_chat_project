@@ -202,7 +202,6 @@ class _IndividualSectionList extends StatelessWidget {
           (e) => const Divider(
             height: .4,
             thickness: .4,
-            indent: 200.0,
             color: Color(0xFFE7E7E7),
           ),
         ),
