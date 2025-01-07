@@ -41,6 +41,12 @@ class Locales extends Translations {
         'shopping': '购物',
         'games': '游戏',
         'mini_programs': '小程序',
+        'new_friends': '新的朋友',
+        'group_chats': '群聊',
+        'tags': '标签',
+        'official_accounts': '公众号',
+        'service_account': '服务号',
+        'we_com_contacts': '企业微信联系人',
       };
 
   Map<String, String> _buildUSTranslations() => {
@@ -67,5 +73,11 @@ class Locales extends Translations {
         'shopping': 'Shopping',
         'games': 'Games',
         'mini_programs': 'Mini Programs',
+        'new_friends': 'New Friends',
+        'group_chats': 'Group Chats',
+        'tags': 'Tags',
+        'official_accounts': 'Official Accounts',
+        'service_account': 'Service Account',
+        'we_com_contacts': 'WeCom Contacts',
       };
 }

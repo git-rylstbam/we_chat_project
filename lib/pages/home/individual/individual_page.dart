@@ -20,25 +20,27 @@ class _IndividualPageState extends State<IndividualPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: const Color(0xFFEDEDED),
-        body: ListView(
+        body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          children: [
-            const _IndividualHeader(),
-            ECSectionLine(
-              icon: Icons.sports_baseball,
-              title: 'pay_and_services'.tr,
-              color: const Color(0xFF1DC879),
-              onPressed: () {},
+          child: Column(
+            children: [
+              const _IndividualHeader(),
+              ECSectionLine(
+                icon: Icons.sports_baseball,
+                title: 'pay_and_services'.tr,
+                color: const Color(0xFF1DC879),
+                onPressed: () {},
+              ),
+              const _IndividualSectionList(),
+              ECSectionLine(
+                icon: Icons.settings_outlined,
+                title: 'settings'.tr,
+                color: Colors.pink,
+                onPressed: () {},
+              ),
+            ].mapWithSeparator(
+              (e) => const SizedBox(height: 10.0),
             ),
-            const _IndividualSectionList(),
-            ECSectionLine(
-              icon: Icons.settings_outlined,
-              title: 'settings'.tr,
-              color: Colors.pink,
-              onPressed: () {},
-            ),
-          ].mapWithSeparator(
-            (e) => const SizedBox(height: 10.0),
           ),
         ),
       );
@@ -49,7 +51,7 @@ class _IndividualHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: () => print('to individual info page'),
+        onTap: () {},
         child: Container(
           decoration: const BoxDecoration(color: Colors.white),
           padding: const EdgeInsets.only(
@@ -101,7 +103,7 @@ class _IndividualHeader extends StatelessWidget {
   Widget _buildIndividualAvatar() => ClipRRect(
         borderRadius: const BorderRadius.all(Radius.circular(5.0)),
         child: Image.asset(
-          IconUtil.icon_individual_avatar,
+          IconUtil.icon_001,
           width: 60.0,
           height: 60.0,
           fit: BoxFit.fill,
@@ -127,7 +129,7 @@ class _IndividualHeader extends StatelessWidget {
       );
 
   Widget _buildAddStatusButton() => GestureDetector(
-        onTap: () => print('to add status page'),
+        onTap: () {},
         child: Container(
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(20.0)),
@@ -150,7 +152,7 @@ class _IndividualHeader extends StatelessWidget {
       );
 
   Widget _buildPublishStatusButton() => GestureDetector(
-        onTap: () => print('to publish status page'),
+        onTap: () {},
         child: Container(
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(20.0)),

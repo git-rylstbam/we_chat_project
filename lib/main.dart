@@ -17,11 +17,11 @@ class _MyApp extends StatelessWidget {
         title: 'High Copy WeChat Project',
         debugShowCheckedModeBanner: false ,
         translations: Locales(),
-        locale: const Locale('zh', 'CN'),
+        locale: const Locale('en', 'US'),
         fallbackLocale: const Locale('zh', 'CN'),
         scrollBehavior: _MyScrollBehavior(),
         theme: lightTheme,
-        home: const SafeArea(child: HomePage()),
+        home: const HomePage(),
       );
 }
 
