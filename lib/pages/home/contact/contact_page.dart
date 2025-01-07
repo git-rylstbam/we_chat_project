@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinyin/pinyin.dart';
 
+import '../../../widgets/ec_search_line.dart';
 import 'model.dart';
 
 /// CreateDate: 2025/1/6 9:22
@@ -41,6 +42,7 @@ class _ContactPageState extends State<ContactPage>
     super.build(context);
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFFEDEDED),
         title: Text(
           'contacts'.tr,
@@ -63,7 +65,7 @@ class _ContactPageState extends State<ContactPage>
           CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
-              _buildSearchLine(),
+              SliverToBoxAdapter(child: ECSearechLine(onPressed: () {})),
               _buildOperationLine(),
               ..._sortedContacts.map(_buildContactItem),
             ],
@@ -79,31 +81,6 @@ class _ContactPageState extends State<ContactPage>
       ),
     );
   }
-
-  Widget _buildSearchLine() => SliverToBoxAdapter(
-        child: Container(
-          padding: const EdgeInsets.all(10.0),
-          color: const Color(0xFFEDEDED),
-          child: TextButton.icon(
-            onPressed: () {},
-            label: Text(
-              'search'.tr,
-              style: const TextStyle(fontSize: 14.0, color: Color(0xFFB2B2B2)),
-            ),
-            style: TextButton.styleFrom(
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(4.0)),
-              ),
-              backgroundColor: Colors.white,
-              overlayColor: Colors.transparent,
-            ),
-            icon: const Icon(
-              Icons.search,
-              color: Color(0xFFB2B2B2),
-            ),
-          ),
-        ),
-      );
 
   Widget _buildOperationLine() => SliverToBoxAdapter(
         child: Column(
