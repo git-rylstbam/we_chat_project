@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '../../../utils/icon_util.dart';
 
 /// CreateDate: 2025/1/7 15:35
@@ -140,4 +142,18 @@ const users = [
     time: '08:08',
     dnd: true,
   ),
+];
+
+class OperationEntity {
+  const OperationEntity({this.icon, this.title});
+
+  final IconData? icon;
+  final String? title;
+}
+
+const operations = [
+  OperationEntity(icon: Icons.notification_add, title: 'new_chat'),
+  OperationEntity(icon: Icons.person_add_alt, title: 'add_contacts'),
+  OperationEntity(icon: Icons.pool, title: 'scan'),
+  OperationEntity(icon: Icons.tips_and_updates, title: 'money'),
 ];

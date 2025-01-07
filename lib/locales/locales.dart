@@ -47,6 +47,9 @@ class Locales extends Translations {
         'official_accounts': '公众号',
         'service_account': '服务号',
         'we_com_contacts': '企业微信联系人',
+        'new_chat': '发起群聊',
+        'add_contacts': '添加朋友',
+        'money': '收付款',
       };
 
   Map<String, String> _buildUSTranslations() => {
@@ -79,5 +82,8 @@ class Locales extends Translations {
         'official_accounts': 'Official Accounts',
         'service_account': 'Service Account',
         'we_com_contacts': 'WeCom Contacts',
+        'new_chat': 'New Chat',
+        'add_contacts': 'Add Contacts',
+        'money': 'Money',
       };
 }
