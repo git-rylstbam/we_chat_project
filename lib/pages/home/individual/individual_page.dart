@@ -111,7 +111,7 @@ class _IndividualHeader extends StatelessWidget {
       );
 
   Widget _buildUsername() => const Text(
-        '花果山来的猴子',
+        '林落凝',
         style: TextStyle(
           fontSize: 20.0,
           color: Colors.black,
@@ -120,7 +120,7 @@ class _IndividualHeader extends StatelessWidget {
       );
 
   Widget _buildUserID() => Text(
-        '${'weixin_id'.tr} : rylstbam500',
+        '${'weixin_id'.tr} : linluoning',
         style: const TextStyle(
           fontSize: 14.0,
           color: Color(0xFF757575),

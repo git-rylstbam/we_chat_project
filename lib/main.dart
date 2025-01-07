@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'locales/locales.dart';
-import 'pages/home/home_page.dart';
+import 'routes.dart';
 import 'theme.dart';
 
 void main() => runApp(const _MyApp());
@@ -15,13 +15,14 @@ class _MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GetMaterialApp(
         title: 'High Copy WeChat Project',
-        debugShowCheckedModeBanner: false ,
+        debugShowCheckedModeBanner: false,
         translations: Locales(),
         locale: const Locale('en', 'US'),
         fallbackLocale: const Locale('zh', 'CN'),
         scrollBehavior: _MyScrollBehavior(),
         theme: lightTheme,
-        home: const HomePage(),
+        initialRoute: RouteKey.splash,
+        getPages: Routes.routes,
       );
 }
 
