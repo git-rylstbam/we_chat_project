@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'connect/connect_page.dart';
+import 'contact/contact_page.dart';
 import 'discover/discover_page.dart';
 import 'individual/individual_page.dart';
 import 'initial/initial_page.dart';
@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
                 valueListenable: _homeStatus,
                 builder: (_, value, __) => switch (value) {
                   HomeStatusEnum.initial => const InitialPage(),
-                  HomeStatusEnum.connect => const ConnectPage(),
+                  HomeStatusEnum.contact => const ContactPage(),
                   HomeStatusEnum.discover => const DiscoverPage(),
                   _ => const IndividualPage(),
                 },
@@ -110,7 +110,7 @@ class _HomeBottomNavigatorState extends State<_HomeBottomNavigator> {
 
 enum HomeStatusEnum {
   initial('chats', Icons.ac_unit),
-  connect('contacts', Icons.agriculture),
+  contact('contacts', Icons.agriculture),
   discover('discover', Icons.linear_scale),
   individual('me', Icons.cruelty_free);
 
