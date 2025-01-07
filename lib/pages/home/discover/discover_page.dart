@@ -21,6 +21,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: const Color(0xFFEDEDED),
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: const Color(0xFFEDEDED),
           title: Text(
             'discover'.tr,
