@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../extensions/list_extensions.dart';
 import '../../../widgets/ec_search_line.dart';
 import 'model.dart';
+import 'widgets/operate_button.dart';
 
 /// CreateDate: 2025/1/6 9:22
 /// Author: Lee
@@ -47,12 +48,7 @@ class _InitialPageState extends State<InitialPage>
           ),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add_circle_outline),
-          ),
-        ],
+        actions: const [OperateButton()],
       ),
       body: ListView(
         physics: const BouncingScrollPhysics(),

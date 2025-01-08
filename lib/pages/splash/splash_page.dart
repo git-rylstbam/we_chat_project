@@ -21,7 +21,7 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
     Future.delayed(
       const Duration(seconds: 1),
-      () => Get.toNamed(RouteKey.home),
+      () => Get.toNamed(Routes.home),
     );
   }
 
