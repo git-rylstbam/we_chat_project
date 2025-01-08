@@ -101,8 +101,6 @@ class _OperateButtonState extends State<OperateButton> {
                 context: context,
                 builder: (_) => const StartGroupChatDialog(),
               );
-              _:
-              print('operation: ${operation.title}');
           }
           _overlayEntry?.remove();
           _overlayEntry?.dispose();

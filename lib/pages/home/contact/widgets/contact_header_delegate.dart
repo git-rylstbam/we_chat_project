@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// CreateDate: 2025/1/8 10:14
 /// Author: Lee
-/// Description: 
+/// Description:
 
 class ContactHeaderDelegate extends SliverPersistentHeaderDelegate {
   const ContactHeaderDelegate(this.tag);
@@ -11,10 +11,10 @@ class ContactHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context,
-      double shrinkOffset,
-      bool overlapsContent,
-      ) =>
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) =>
       Container(
         height: 40.0,
         alignment: Alignment.centerLeft,
