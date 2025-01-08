@@ -12,6 +12,7 @@ class ECSearechLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
+        width: double.infinity,
         padding: const EdgeInsets.all(10.0),
         color: const Color(0xFFEDEDED),
         child: TextButton.icon(

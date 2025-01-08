@@ -50,6 +50,14 @@ class Locales extends Translations {
         'new_chat': '发起群聊',
         'add_contacts': '添加朋友',
         'money': '收付款',
+        'cancel': '取消',
+        'friends': '选择联系人',
+        'select_a_group': '选择一个群',
+        'join_private_group': '面对面建群',
+        'select_we_com_contact': '选择企业微信联系人',
+        'done': '完成',
+        'group_chat': '群聊',
+        'group': '聊天信息',
       };
 
   Map<String, String> _buildUSTranslations() => {
@@ -85,5 +93,13 @@ class Locales extends Translations {
         'new_chat': 'New Chat',
         'add_contacts': 'Add Contacts',
         'money': 'Money',
+        'cancel': 'Cancel',
+        'friends': 'Select Contact',
+        'select_a_group': 'Select a Group',
+        'join_private_group': 'Join Private Group',
+        'select_we_com_contact': 'Select WeCom Contact',
+        'done': 'Done',
+        'group_chat': 'Group Chat',
+        'group': 'Group',
       };
 }

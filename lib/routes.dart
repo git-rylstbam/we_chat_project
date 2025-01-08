@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import 'pages/chat/chat_page.dart';
+import 'pages/chat_info/chat_info_page.dart';
 import 'pages/home/home_page.dart';
 import 'pages/splash/splash_page.dart';
 
@@ -7,14 +9,16 @@ import 'pages/splash/splash_page.dart';
 /// Author: Lee
 /// Description:
 
-abstract class RouteKey {
+abstract class Routes {
   static const splash = '/';
   static const home = '/home';
-}
+  static const chat = '/chat';
+  static const chat_info = '/chat_info';
 
-abstract class Routes {
   static final routes = [
-    GetPage(name: RouteKey.splash, page: () => const SplashPage()),
-    GetPage(name: RouteKey.home, page: () => const HomePage()),
+    GetPage(name: splash, page: () => const SplashPage()),
+    GetPage(name: home, page: () => const HomePage()),
+    GetPage(name: chat, page: () => const ChatPage()),
+    GetPage(name: chat_info, page: () => const ChatInfoPage()),
   ];
 }

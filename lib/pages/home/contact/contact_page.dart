@@ -4,6 +4,9 @@ import 'package:pinyin/pinyin.dart';
 
 import '../../../widgets/ec_search_line.dart';
 import 'model.dart';
+import 'widgets/contact_header_delegate.dart';
+import 'widgets/contact_info_line.dart';
+import 'widgets/letter_line.dart';
 
 /// CreateDate: 2025/1/6 9:22
 /// Author: Lee
@@ -74,7 +77,7 @@ class _ContactPageState extends State<ContactPage>
             alignment: Alignment.centerRight,
             child: Padding(
               padding: EdgeInsets.only(right: 10.0),
-              child: _LetterLine(),
+              child: LetterLine(),
             ),
           ),
         ],
@@ -111,10 +114,10 @@ class _ContactPageState extends State<ContactPage>
       slivers: [
         SliverPersistentHeader(
           pinned: true,
-          delegate: _ContactHeaderDelegate(e.tag),
+          delegate: ContactHeaderDelegate(e.tag),
         ),
         SliverList.separated(
-          itemBuilder: (_, index) => _buildContactInfo(infos[index]),
+          itemBuilder: (_, index) => ContactInfoLine(info: infos[index]),
           separatorBuilder: (_, __) => const Divider(
             height: .4,
             thickness: .4,
@@ -125,65 +128,6 @@ class _ContactPageState extends State<ContactPage>
       ],
     );
   }
-
-  Widget _buildContactInfo(ContactInfo? info) => GestureDetector(
-        onTap: () {},
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-          child: Row(
-            spacing: 10.0,
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                child: info?.icon == null
-                    ? const Placeholder()
-                    : Image.asset(
-                        info!.icon!,
-                        width: 35.0,
-                        height: 35.0,
-                        fit: BoxFit.fill,
-                      ),
-              ),
-              Expanded(
-                child: Text(
-                  info?.name ?? '--',
-                  style: const TextStyle(fontSize: 14.0),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-}
-
-class _ContactHeaderDelegate extends SliverPersistentHeaderDelegate {
-  const _ContactHeaderDelegate(this.tag);
-
-  final String? tag;
-
-  @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) =>
-      Container(
-        height: 40.0,
-        alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.only(left: 10.0),
-        color: Colors.white,
-        child: Text(tag ?? '--'),
-      );
-
-  @override
-  double get maxExtent => minExtent;
-
-  @override
-  double get minExtent => 40.0;
-
-  @override
-  bool shouldRebuild(_ContactHeaderDelegate oldDelegate) =>
-      tag != oldDelegate.tag;
 }
 
 class _ContactOperationLine extends StatelessWidget {
@@ -222,35 +166,5 @@ class _ContactOperationLine extends StatelessWidget {
             const Divider(height: .4, thickness: .4, color: Color(0xFFE7E7E7)),
           ],
         ),
-      );
-}
-
-class _LetterLine extends StatefulWidget {
-  const _LetterLine();
-
-  @override
-  State<_LetterLine> createState() => _LetterLineState();
-}
-
-class _LetterLineState extends State<_LetterLine> {
-  String _selectLetter = '';
-
-  @override
-  Widget build(BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: letters
-            .map(
-              (e) => GestureDetector(
-                onTap: () => setState(() => _selectLetter = e),
-                child: Text(
-                  e,
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    color: _selectLetter == e ? Colors.green : Colors.black,
-                  ),
-                ),
-              ),
-            )
-            .toList(),
       );
 }

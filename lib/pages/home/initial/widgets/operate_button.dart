@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../extensions/list_extensions.dart';
 import '../model.dart';
+import 'start_group_chat_dialog.dart';
 
 /// CreateDate: 2025/1/7 17:20
 /// Author: Lee
@@ -32,10 +33,6 @@ class _OperateButtonState extends State<OperateButton> {
   Widget build(BuildContext context) => IconButton(
         key: _key,
         onPressed: _showOperations,
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        focusColor: Colors.transparent,
-        hoverColor: Colors.transparent,
         icon: const Icon(Icons.add_circle_outline),
       );
 
@@ -50,7 +47,7 @@ class _OperateButtonState extends State<OperateButton> {
     final position = render.localToGlobal(Offset.zero);
     return OverlayEntry(
       builder: (_) => Positioned(
-        left: position.dx - size.width - 60.0,
+        right: 10.0,
         top: position.dy + size.height + 1.0,
         child: TapRegion(
           onTapOutside: (_) {
@@ -82,8 +79,8 @@ class _OperateButtonState extends State<OperateButton> {
                       .toList()
                       .mapWithSeparator(
                         (e) => const Divider(
-                          height: .2,
-                          thickness: .2,
+                          height: .5,
+                          thickness: .5,
                           color: Colors.white,
                         ),
                       ),
@@ -97,7 +94,20 @@ class _OperateButtonState extends State<OperateButton> {
   }
 
   Widget _buildOperationItem(OperationEntity operation) => GestureDetector(
-        onTap: () {},
+        onTap: () {
+          switch (operation.id) {
+            case 0:
+              showDialog(
+                context: context,
+                builder: (_) => const StartGroupChatDialog(),
+              );
+              _:
+              print('operation: ${operation.title}');
+          }
+          _overlayEntry?.remove();
+          _overlayEntry?.dispose();
+          _overlayEntry = null;
+        },
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Row(
@@ -110,6 +120,7 @@ class _OperateButtonState extends State<OperateButton> {
                   fontSize: 14.0,
                   color: Colors.white,
                   decoration: TextDecoration.none,
+                  fontWeight: FontWeight.w100,
                 ),
               ),
             ],

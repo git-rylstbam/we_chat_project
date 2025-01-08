@@ -145,15 +145,16 @@ const users = [
 ];
 
 class OperationEntity {
-  const OperationEntity({this.icon, this.title});
+  const OperationEntity({required this.id, this.icon, this.title});
 
+  final int id;
   final IconData? icon;
   final String? title;
 }
 
 const operations = [
-  OperationEntity(icon: Icons.notification_add, title: 'new_chat'),
-  OperationEntity(icon: Icons.person_add_alt, title: 'add_contacts'),
-  OperationEntity(icon: Icons.pool, title: 'scan'),
-  OperationEntity(icon: Icons.tips_and_updates, title: 'money'),
+  OperationEntity(id: 0, icon: Icons.notification_add, title: 'new_chat'),
+  OperationEntity(id: 1, icon: Icons.person_add_alt, title: 'add_contacts'),
+  OperationEntity(id: 2, icon: Icons.pool, title: 'scan'),
+  OperationEntity(id: 3, icon: Icons.tips_and_updates, title: 'money'),
 ];

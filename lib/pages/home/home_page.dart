@@ -14,11 +14,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _homeStatus = ValueNotifier<HomeStatusEnum>(HomeStatusEnum.initial);
+  final _homeStatusNotifier = ValueNotifier<HomeStatusEnum>(HomeStatusEnum.initial);
 
   @override
   void dispose() {
-    _homeStatus.dispose();
+    _homeStatusNotifier.dispose();
     super.dispose();
   }
 
@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Expanded(
               child: ValueListenableBuilder(
-                valueListenable: _homeStatus,
+                valueListenable: _homeStatusNotifier,
                 builder: (_, value, __) => switch (value) {
                   HomeStatusEnum.initial => const InitialPage(),
                   HomeStatusEnum.contact => const ContactPage(),
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             _HomeBottomNavigator(
-              onSelected: (value) => _homeStatus.value = value,
+              onSelected: (value) => _homeStatusNotifier.value = value,
             ),
           ],
         ),
