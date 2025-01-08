@@ -7,18 +7,20 @@ import 'package:flutter/material.dart';
 class ECSectionLine extends StatelessWidget {
   const ECSectionLine({
     super.key,
-    required this.icon,
+    this.icon,
     required this.title,
-    required this.color,
+    this.color,
     required this.onPressed,
     this.trailing,
+    this.fontWeight = FontWeight.bold,
   });
 
-  final IconData icon;
+  final IconData? icon;
   final String title;
-  final Color color;
+  final Color? color;
   final void Function() onPressed;
   final Widget? trailing;
+  final FontWeight fontWeight;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
@@ -29,14 +31,14 @@ class ECSectionLine extends StatelessWidget {
           child: Row(
             spacing: 10.0,
             children: [
-              Icon(icon, color: color, size: 18.0),
+              if (icon != null) Icon(icon, color: color, size: 18.0),
               Expanded(
                 child: Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14.0,
                     color: Colors.black,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: fontWeight,
                   ),
                 ),
               ),
