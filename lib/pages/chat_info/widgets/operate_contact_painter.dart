@@ -46,5 +46,5 @@ class MinusContactPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(InsertContactPainter oldDelegate) => false;
+  bool shouldRepaint(MinusContactPainter oldDelegate) => false;
 }

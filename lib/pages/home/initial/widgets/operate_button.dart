@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../extensions/list_extensions.dart';
+import '../../../../routes.dart';
 import '../model.dart';
 import 'start_group_chat_dialog.dart';
 
@@ -93,35 +94,40 @@ class _OperateButtonState extends State<OperateButton> {
     );
   }
 
-  Widget _buildOperationItem(OperationEntity operation) => GestureDetector(
-        onTap: () {
-          switch (operation.id) {
-            case 0:
-              showDialog(
-                context: context,
-                builder: (_) => const StartGroupChatDialog(),
-              );
-          }
-          _overlayEntry?.remove();
-          _overlayEntry?.dispose();
-          _overlayEntry = null;
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Row(
-            spacing: 10.0,
-            children: [
-              Icon(operation.icon, size: 20.0, color: Colors.white),
-              Text(
-                operation.title?.tr ?? '--',
-                style: const TextStyle(
-                  fontSize: 14.0,
-                  color: Colors.white,
-                  decoration: TextDecoration.none,
-                  fontWeight: FontWeight.w100,
+  Widget _buildOperationItem(OperationEntity operation) => MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () {
+            switch (operation.id) {
+              case 0:
+                showDialog(
+                  context: context,
+                  builder: (_) => const StartGroupChatDialog(),
+                );
+              case 1:
+                Get.toNamed(Routes.insert_contact);
+            }
+            _overlayEntry?.remove();
+            _overlayEntry?.dispose();
+            _overlayEntry = null;
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              spacing: 10.0,
+              children: [
+                Icon(operation.icon, size: 20.0, color: Colors.white),
+                Text(
+                  operation.title?.tr ?? '--',
+                  style: const TextStyle(
+                    fontSize: 14.0,
+                    color: Colors.white,
+                    decoration: TextDecoration.none,
+                    fontWeight: FontWeight.w100,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );

@@ -14,7 +14,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _homeStatusNotifier = ValueNotifier<HomeStatusEnum>(HomeStatusEnum.initial);
+  final _homeStatusNotifier =
+      ValueNotifier<HomeStatusEnum>(HomeStatusEnum.initial);
 
   @override
   void dispose() {
@@ -79,31 +80,34 @@ class _HomeBottomNavigatorState extends State<_HomeBottomNavigator> {
         ),
       );
 
-  Widget _buildSingleNavigator(HomeStatusEnum status) => GestureDetector(
-        onTap: () {
-          setState(() => _selectNavigator = status);
-          widget.onSelected(status);
-        },
-        child: Column(
-          spacing: 4.0,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              status.icon,
-              color: _selectNavigator == status
-                  ? const Color(0xFF1FC263)
-                  : const Color(0xFF1C1C1C),
-            ),
-            Text(
-              status.show.tr,
-              style: TextStyle(
-                fontSize: 12.0,
+  Widget _buildSingleNavigator(HomeStatusEnum status) => MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () {
+            setState(() => _selectNavigator = status);
+            widget.onSelected(status);
+          },
+          child: Column(
+            spacing: 4.0,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                status.icon,
                 color: _selectNavigator == status
                     ? const Color(0xFF1FC263)
                     : const Color(0xFF1C1C1C),
               ),
-            ),
-          ],
+              Text(
+                status.show.tr,
+                style: TextStyle(
+                  fontSize: 12.0,
+                  color: _selectNavigator == status
+                      ? const Color(0xFF1FC263)
+                      : const Color(0xFF1C1C1C),
+                ),
+              ),
+            ],
+          ),
         ),
       );
 }

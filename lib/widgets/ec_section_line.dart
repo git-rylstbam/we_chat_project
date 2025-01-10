@@ -10,41 +10,69 @@ class ECSectionLine extends StatelessWidget {
     this.icon,
     required this.title,
     this.color,
-    required this.onPressed,
+    this.path,
+    this.onPressed,
+    this.leading,
     this.trailing,
-    this.fontWeight = FontWeight.bold,
+    this.fontWeight = FontWeight.w100,
+    this.showArrow = true,
+    this.iconSize = 18.0,
+    this.imageWidth = 18.0,
+    this.imageHeight = 18.0,
   });
 
   final IconData? icon;
   final String title;
   final Color? color;
-  final void Function() onPressed;
+  final String? path;
+  final void Function()? onPressed;
+  final Widget? leading;
   final Widget? trailing;
   final FontWeight fontWeight;
+  final bool showArrow;
+  final double iconSize;
+  final double imageWidth;
+  final double imageHeight;
 
   @override
-  Widget build(BuildContext context) => GestureDetector(
-        onTap: onPressed,
-        child: Container(
-          color: Colors.white,
-          padding: const EdgeInsets.all(20.0),
-          child: Row(
-            spacing: 10.0,
-            children: [
-              if (icon != null) Icon(icon, color: color, size: 18.0),
-              Expanded(
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.black,
-                    fontWeight: fontWeight,
+  Widget build(BuildContext context) => MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: onPressed,
+          child: Container(
+            color: Colors.white,
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
+              spacing: 10.0,
+              children: [
+                if (icon != null) Icon(icon, color: color, size: iconSize),
+                if (path != null)
+                  Image.asset(
+                    path!,
+                    width: imageWidth,
+                    height: imageHeight,
+                    fit: BoxFit.fill,
+                  ),
+                Expanded(
+                  child: Row(
+                    spacing: 10.0,
+                    children: [
+                      Text(
+                        title,
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          color: Colors.black,
+                          fontWeight: fontWeight,
+                        ),
+                      ),
+                      if (leading != null) leading!,
+                    ],
                   ),
                 ),
-              ),
-              if (trailing != null) trailing!,
-              const ECRightArrow(),
-            ],
+                if (trailing != null) trailing!,
+                if (showArrow) const ECRightArrow(),
+              ],
+            ),
           ),
         ),
       );

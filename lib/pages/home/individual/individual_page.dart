@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../extensions/list_extensions.dart';
+import '../../../routes.dart';
 import '../../../utils/icon_util.dart';
 import '../../../widgets/ec_section_line.dart';
 
@@ -36,7 +37,7 @@ class _IndividualPageState extends State<IndividualPage> {
                 icon: Icons.settings_outlined,
                 title: 'settings'.tr,
                 color: Colors.pink,
-                onPressed: () {},
+                onPressed: () => Get.toNamed(Routes.settings),
               ),
             ].mapWithSeparator(
               (e) => const SizedBox(height: 10.0),

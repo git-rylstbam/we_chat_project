@@ -70,10 +70,12 @@ class _StartGroupChatDialogState extends State<StartGroupChatDialog> {
               child: ValueListenableBuilder(
                 valueListenable: _contactListNotifier,
                 builder: (_, value, __) => ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    Get.toNamed(Routes.chat, arguments: value);
-                  },
+                  onPressed: value.isEmpty
+                      ? null
+                      : () {
+                          Navigator.of(context).pop();
+                          Get.toNamed(Routes.chat, arguments: value);
+                        },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: value.isEmpty
                         ? const Color(0xFFE1E1E1)
@@ -119,21 +121,18 @@ class _StartGroupChatDialogState extends State<StartGroupChatDialog> {
                           child: ECSectionLine(
                             title: 'select_a_group'.tr,
                             onPressed: () {},
-                            fontWeight: FontWeight.w100,
                           ),
                         ),
                         SliverToBoxAdapter(
                           child: ECSectionLine(
                             title: 'join_private_group'.tr,
                             onPressed: () {},
-                            fontWeight: FontWeight.w100,
                           ),
                         ),
                         SliverToBoxAdapter(
                           child: ECSectionLine(
                             title: 'select_we_com_contact'.tr,
                             onPressed: () {},
-                            fontWeight: FontWeight.w100,
                           ),
                         ),
                       ].mapWithSeparator(

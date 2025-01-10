@@ -29,7 +29,7 @@ const users = [
     icon: IconUtil.icon_001,
     name: '白鹿',
     count: 20,
-    message: '无边落木萧萧下，万里长江滚滚来',
+    message: '无边落木萧萧下，不尽长江滚滚来',
     time: '09:18',
     dnd: true,
   ),
@@ -39,7 +39,6 @@ const users = [
     count: 490,
     message: '人生如雪，墨点为缀；花开落蕊，雪化成灰。',
     time: '09:12',
-    dnd: true,
   ),
   UserEntity(
     icon: IconUtil.icon_003,

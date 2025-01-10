@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../extensions/list_extensions.dart';
+import '../../../routes.dart';
 import '../../../widgets/ec_search_line.dart';
 import 'model.dart';
 import 'widgets/operate_button.dart';
@@ -54,7 +55,10 @@ class _InitialPageState extends State<InitialPage>
         physics: const BouncingScrollPhysics(),
         children: [
           ECSearechLine(onPressed: () {}),
-          ...users.map((e) => _UserChatLine(user: e)).toList().mapWithSeparator(
+          ...users
+              .map((e) => _UserChatLine(user: e, count: _count))
+              .toList()
+              .mapWithSeparator(
                 (e) => const Divider(
                   height: .4,
                   thickness: .4,
@@ -68,88 +72,108 @@ class _InitialPageState extends State<InitialPage>
 }
 
 class _UserChatLine extends StatelessWidget {
-  const _UserChatLine({required this.user});
+  const _UserChatLine({
+    required this.user,
+    required this.count,
+  });
 
   final UserEntity user;
+  final int count;
 
   @override
-  Widget build(BuildContext context) => GestureDetector(
-        onTap: () {},
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Row(
-            spacing: 10.0,
-            children: [
-              if (user.count != 0)
-                Badge(
-                  backgroundColor: Colors.red,
-                  smallSize: 8.0,
-                  label: user.dnd ? null : Text('${user.count}'),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 3.0, right: 3.0),
-                    child: _buildUserAvatar(),
+  Widget build(BuildContext context) => MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () => Get.toNamed(
+            Routes.chat_to_user,
+            arguments: user,
+            parameters: {'count': count.toString()},
+          ),
+          child: Container(
+            color: Colors.transparent,
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              spacing: 10.0,
+              children: [
+                if (user.count != 0)
+                  Badge(
+                    backgroundColor: Colors.red,
+                    smallSize: 8.0,
+                    label: user.dnd
+                        ? null
+                        : user.count != null && user.count! <= 99
+                            ? Text('${user.count}')
+                            : const Icon(
+                                Icons.more_horiz,
+                                size: 14.0,
+                                color: Colors.white,
+                              ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 3.0, right: 3.0),
+                      child: _buildUserAvatar(),
+                    ),
+                  )
+                else
+                  _buildUserAvatar(),
+                Expanded(
+                  child: Column(
+                    spacing: 4.0,
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        user.name ?? '--',
+                        style: const TextStyle(fontSize: 14.0),
+                      ),
+                      Row(
+                        spacing: 4.0,
+                        children: [
+                          if (user.count != 0)
+                            Text(
+                              '[${user.count}条]',
+                              style: const TextStyle(
+                                fontSize: 12.0,
+                                color: Color(0xFFB8B8B8),
+                              ),
+                            ),
+                          Expanded(
+                            child: Text(
+                              user.message ?? '--',
+                              style: const TextStyle(
+                                fontSize: 12.0,
+                                color: Color(0xFFB8B8B8),
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                )
-              else
-                _buildUserAvatar(),
-              Expanded(
-                child: Column(
+                ),
+                Column(
                   spacing: 4.0,
                   mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      user.name ?? '--',
-                      style: const TextStyle(fontSize: 14.0),
+                      user.time ?? '--',
+                      style: const TextStyle(
+                        fontSize: 12.0,
+                        color: Color(0xFFB8B8B8),
+                      ),
                     ),
-                    Row(
-                      spacing: 4.0,
-                      children: [
-                        if (user.count != 0)
-                          Text(
-                            '[${user.count}条]',
-                            style: const TextStyle(
-                              fontSize: 12.0,
-                              color: Color(0xFFB8B8B8),
-                            ),
-                          ),
-                        Expanded(
-                          child: Text(
-                            user.message ?? '--',
-                            style: const TextStyle(
-                              fontSize: 12.0,
-                              color: Color(0xFFB8B8B8),
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
-                    ),
+                    if (user.dnd)
+                      const Icon(
+                        Icons.hearing_disabled,
+                        size: 12.0,
+                        color: Color(0xFFB8B8B8),
+                      ),
                   ],
                 ),
-              ),
-              Column(
-                spacing: 4.0,
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    user.time ?? '--',
-                    style: const TextStyle(
-                      fontSize: 12.0,
-                      color: Color(0xFFB8B8B8),
-                    ),
-                  ),
-                  if (user.dnd)
-                    const Icon(
-                      Icons.hearing_disabled,
-                      size: 12.0,
-                      color: Color(0xFFB8B8B8),
-                    ),
-                ],
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );
